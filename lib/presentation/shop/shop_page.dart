@@ -27,7 +27,10 @@ class _ShopPageState extends State<ShopPage> {
         ),
       ),
       body: Column(
-        children: [Image.asset("assets/images/map.png")],
+        children: [
+          const SizedBox(height: 24.0),
+          Image.asset("assets/maps_images/map.png")
+        ],
       ),
     );
   }
