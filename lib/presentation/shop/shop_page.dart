@@ -27,7 +27,7 @@ class _ShopPageState extends State<ShopPage> {
         ),
       ),
       body: Column(
-        children: [Image.asset("assets/images/ma.png")],
+        children: [Image.asset("assets/images/map.png")],
       ),
     );
   }
