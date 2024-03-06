@@ -13,7 +13,21 @@ class _ShopPageState extends State<ShopPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.shopUID),
+        centerTitle: false,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(widget.shopUID, style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              widget.shopUID,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
+      ),
+      body: Column(
+        children: [Image.asset("assets/images/ma.png")],
       ),
     );
   }
