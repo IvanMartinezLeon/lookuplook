@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -27,7 +26,7 @@ class BeaconsCubit extends Cubit<BeaconsState> {
           const [],
         ),
       );
-    } on PlatformException catch (e) {
+    } catch (e) {
       emit(
         BeaconsError(
           state.beaconsList,
@@ -59,7 +58,7 @@ class BeaconsCubit extends Cubit<BeaconsState> {
           ),
         );
       });
-    } on PlatformException catch (e) {
+    } catch (e) {
       emit(
         BeaconsError(
           state.beaconsList,
@@ -87,7 +86,7 @@ class BeaconsCubit extends Cubit<BeaconsState> {
           ),
         );
       });
-    } on PlatformException catch (e) {
+    } catch (e) {
       emit(
         BeaconsError(
           state.beaconsList,
