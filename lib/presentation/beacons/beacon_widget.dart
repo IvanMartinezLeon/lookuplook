@@ -25,19 +25,20 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
             );
           }
 
-          if (state is BeaconsActive) {
+          if (state is BeaconsActive || state is BeaconsLoaded) {
             return ListView.builder(
               padding: EdgeInsets.zero,
               itemCount: 100,
               itemBuilder: (context, index) {
                 return ListTile(
                   contentPadding: EdgeInsets.zero,
+                  onTap: () => context.read<BeaconsCubit>().beaconsRanging(),
                   leading: Image.network(
                     "https://st.mngbcn.com/rcs/pics/static/T4/fotos/SZ/47025923_99_B4.jpg?imwidth=320",
                     height: 120.0,
                   ),
                   title: const Text('perndaaa 111'),
-                  subtitle: const Text('perndaaa 111'),
+                  subtitle: Text(state.rangingList.toString()),
                   trailing: IconButton(
                     onPressed: () {},
                     icon: const Icon(Icons.search),

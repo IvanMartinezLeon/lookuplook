@@ -2,7 +2,7 @@ part of 'beacons_cubit.dart';
 
 sealed class BeaconsState extends Equatable {
   final List<Region> beaconsList;
-  final List<RangingResult> rangingList;
+  final List<Beacon> rangingList;
   final List<MonitoringResult> monitoringList;
   const BeaconsState(this.beaconsList, this.rangingList, this.monitoringList);
 
