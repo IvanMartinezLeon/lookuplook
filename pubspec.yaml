@@ -19,6 +19,8 @@ dependencies:
 
   flutter_beacon : ^0.5.1
 
+  permission_handler: ^11.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

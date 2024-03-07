@@ -11,6 +11,16 @@ class BeaconsWidget extends StatefulWidget {
 
 class _BeaconsWidgetState extends State<BeaconsWidget> {
   @override
+  void initState() {
+    if (context.read<BeaconsCubit>() is BeaconsActive) {
+      print('odfodfodsofodsofo');
+      context.read<BeaconsCubit>().beaconsRanging();
+    }
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(
@@ -19,6 +29,7 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
       ),
       child: BlocBuilder<BeaconsCubit, BeaconsState>(
         builder: (context, state) {
+          print(state.toString());
           if (state is BeaconsError) {
             return Center(
               child: Text(state.message),

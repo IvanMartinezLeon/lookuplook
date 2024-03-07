@@ -13,17 +13,26 @@ class BlocProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => BeaconsCubit()..beaconsInit(),
-        ),
+        BlocProvider(create: (context) => BeaconsCubit()),
       ],
       child: const MyApp(),
     );
   }
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    context.read<BeaconsCubit>().beaconsInit();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
