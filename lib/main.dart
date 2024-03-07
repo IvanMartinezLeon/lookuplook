@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'presentation/presentation.dart';
 
 void main() async {
-  runApp(const MyApp());
+  runApp(const BlocProviders());
 }
 
 class BlocProviders extends StatelessWidget {
@@ -14,10 +14,10 @@ class BlocProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => BeaconsCubit(),
+          create: (context) => BeaconsCubit()..beaconsInit(),
         ),
       ],
-      child: Container(),
+      child: const MyApp(),
     );
   }
 }
