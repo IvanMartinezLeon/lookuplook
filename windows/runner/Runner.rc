@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "lookuplook" "\0"
+            VALUE "FileDescription", "lookitup" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "lookuplook" "\0"
+            VALUE "InternalName", "lookitup" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "lookuplook.exe" "\0"
-            VALUE "ProductName", "lookuplook" "\0"
+            VALUE "OriginalFilename", "lookitup.exe" "\0"
+            VALUE "ProductName", "lookitup" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

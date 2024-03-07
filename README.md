@@ -1,4 +1,4 @@
-# lookuplook
+# lookitup
 
 A new Flutter project.
 

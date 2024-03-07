@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowMaterialGrid: false,
       debugShowCheckedModeBanner: false,
-      title: 'lookuplook',
+      title: 'lookitup',
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: Colors.white,
