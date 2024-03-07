@@ -1,7 +1,7 @@
 var product_json = {
   "Products": [
     {
-      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa6",
+      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa7",
       "Product": "23401596KP001",
       "CommercialReference": "47025923",
       "Material": "23401596KP001",
@@ -38,7 +38,7 @@ var product_json = {
           "https://st.mngbcn.com/rcs/pics/static/T4/fotos/SZ/47025923_99_B4.jpg?imwidth=320"
     },
     {
-      "Uuid": "6efa7290-91c6-4db6-a9eb-ff87f238e1b5",
+      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa7",
       "Product": "23401234KC001",
       "CommercialReference": "47026315",
       "Material": "23401234KC001",
@@ -75,7 +75,7 @@ var product_json = {
           "https://st.mngbcn.com/rcs/pics/static/T4/fotos/SZ/47026315_99_B4.jpg?imwidth=320"
     },
     {
-      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa6",
+      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa7",
       "Product": "23500432KP001",
       "CommercialReference": "57033256",
       "Material": "23500432KP001",
@@ -112,7 +112,7 @@ var product_json = {
           "https://st.mngbcn.com/rcs/pics/static/T5/fotos/SZ/57033256_TM_B4.jpg?imwidth=320"
     },
     {
-      "Uuid": "46a923f6-838d-4c4a-9938-9ad8748db27b",
+      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa7",
       "Product": "2060342VJ0101",
       "CommercialReference": "67850051",
       "Material": "2060342VJ0101",
@@ -149,7 +149,7 @@ var product_json = {
           "https://st.mngbcn.com/rcs/pics/static/T6/fotos/SZ/67850051_TM_B4.jpg?imwidth=320"
     },
     {
-      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa6",
+      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa7",
       "Product": "23506561MT002",
       "CommercialReference": "57009130",
       "Material": "23506561MT002",
@@ -186,7 +186,7 @@ var product_json = {
           "https://st.mngbcn.com/rcs/pics/static/T5/fotos/SZ/57009130_58_B4.jpg?imwidth=320"
     },
     {
-      "Uuid": "46a923f6-838d-4c4a-9938-9ad8748db27b",
+      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa7",
       "Product": "23400518MC002",
       "CommercialReference": "47000096",
       "Material": "23400518MC002",
@@ -223,7 +223,7 @@ var product_json = {
           "https://st.mngbcn.com/rcs/pics/static/T4/fotos/SZ/47000096_30_B4.jpg?imwidth=320"
     },
     {
-      "Uuid": "67ca04b5-ac7b-4ee2-973b-69e59765636c",
+      "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa7",
       "Product": "23400015MP002",
       "CommercialReference": "47000085",
       "Material": "23400015MP002",

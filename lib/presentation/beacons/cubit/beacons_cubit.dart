@@ -39,11 +39,22 @@ class BeaconsCubit extends Cubit<BeaconsState> {
     }
   }
 
+  void beaconsClose() {
+    flutterBeacon.close;
+    emit(
+      BeaconsActive(
+        state.beaconsList,
+        null,
+      ),
+    );
+  }
+
   void beaconsRanging(String beaconUID) async {
     try {
+      flutterBeacon.close;
       flutterBeacon.ranging([
         Region(
-          identifier: '50765CB7-D9EA-4E21-99A4-FA879613A492',
+          identifier: beaconUID,
         ),
       ]).listen((RangingResult result) {
         emit(
@@ -54,11 +65,12 @@ class BeaconsCubit extends Cubit<BeaconsState> {
         );
 
         for (Beacon element in result.beacons) {
-          if (beaconUID == element.proximityUUID) {
+          if (beaconUID.toUpperCase() == element.proximityUUID.toUpperCase()) {
+            print('encontradooooo');
             emit(
               BeaconsLoaded(
                 state.beaconsList,
-                null,
+                element,
               ),
             );
           }

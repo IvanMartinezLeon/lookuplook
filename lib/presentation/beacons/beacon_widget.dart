@@ -11,10 +11,23 @@ class BeaconsWidget extends StatefulWidget {
 
 class _BeaconsWidgetState extends State<BeaconsWidget> {
   List<ProductElement> productsList = [];
+  List<bool> isActiveList = [];
+  int indexActive = 0;
+
+  List<List<double>> coord = [
+    [145.0, 73, 0],
+    [250.0, 75, 0],
+    [145.0, 100, 0],
+    [145.0, 73, 0],
+    [250.0, 75, 0],
+    [250.0, 75, 0],
+    [145.0, 73, 0],
+  ];
 
   @override
   void initState() {
     productsList = Product.fromJson(product_json).products;
+    isActiveList = List.filled(productsList.length, false);
     super.initState();
   }
 
@@ -25,63 +38,100 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        vertical: 8.0,
-        horizontal: 16.0,
-      ),
-      child: BlocBuilder<BeaconsCubit, BeaconsState>(
-        builder: (context, state) {
-          if (state is BeaconsError) {
-            return Center(
-              child: Text(state.message),
-            );
-          }
+    return Column(
+      children: [
+        const SizedBox(height: 24.0),
+        Stack(
+          children: [
+            Image.asset(
+              "assets/maps_images/map.png",
+              height: 395,
+            ),
+            Positioned(
+              bottom: coord[indexActive][0],
+              right: coord[indexActive][1],
+              child: Icon(
+                Icons.location_pin,
+                color: context.watch<BeaconsCubit>().state is BeaconsLoaded
+                    ? Colors.black
+                    : Colors.transparent,
+                size: 48,
+              ),
+            ),
+          ],
+        ),
+        Expanded(
+          child: Container(
+            margin: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 16.0,
+            ),
+            child: BlocBuilder<BeaconsCubit, BeaconsState>(
+              builder: (context, state) {
+                if (state is BeaconsError) {
+                  return Center(
+                    child: Text(state.message),
+                  );
+                }
 
-          if (state is BeaconsActive || state is BeaconsLoaded) {
-            return ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: productsList.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  onTap: () => context
-                      .read<BeaconsCubit>()
-                      .beaconsRanging(productsList[index].uuid),
-                  leading: Image.network(
-                    productsList[index].productImageUrl,
-                    height: 120.0,
-                  ),
-                  title: Text(productsList[index].materialName),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        productsList[index].businessPartnerName,
-                        textAlign: TextAlign.start,
+                return ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: productsList.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      onTap: () {
+                        if (index != indexActive) {
+                          if (isActiveList[indexActive]) {
+                            isActiveList[indexActive] = false;
+                            // context.read<BeaconsCubit>().beaconsClose();
+                          }
+                        }
+                        if (isActiveList[index]) {
+                          isActiveList[index] = false;
+                          // context.read<BeaconsCubit>().beaconsClose();
+                        } else {
+                          isActiveList[index] = true;
+                          context
+                              .read<BeaconsCubit>()
+                              .beaconsRanging(productsList[index].uuid);
+                        }
+                        indexActive = index;
+
+                        setState(() {});
+                      },
+                      leading: Image.network(
+                        productsList[index].productImageUrl,
+                        height: 120.0,
                       ),
-                      state.rangingList != null
-                          ? Text(
-                              'Distance ${state.rangingList!.accuracy} meters',
-                              textAlign: TextAlign.start,
-                            )
-                          : const SizedBox(),
-                    ],
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.search),
-                  ),
+                      title: Text(productsList[index].materialName),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            productsList[index].businessPartnerName,
+                            textAlign: TextAlign.start,
+                          ),
+                          state.rangingList != null && isActiveList[index]
+                              ? Text(
+                                  'Distancia ${state.rangingList!.accuracy} metros',
+                                  textAlign: TextAlign.start,
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                )
+                              : const SizedBox(),
+                        ],
+                      ),
+                      trailing: isActiveList[index]
+                          ? const Icon(Icons.close)
+                          : const Icon(Icons.search),
+                    );
+                  },
                 );
               },
-            );
-          }
-
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

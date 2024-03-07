@@ -28,13 +28,7 @@ class _ShopPageState extends State<ShopPage> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 24.0),
-          Image.asset("assets/maps_images/map.png"),
-          const Expanded(child: BeaconsWidget()),
-        ],
-      ),
+      body: const BeaconsWidget(),
     );
   }
 }
