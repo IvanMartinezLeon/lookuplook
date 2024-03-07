@@ -34,8 +34,9 @@ class _LoginPageState extends State<LoginPage> {
                     height: 200.0,
                     width: constraints.maxWidth,
                     alignment: Alignment.bottomCenter,
-                    child: const FlutterLogo(
-                      size: 150.0,
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      height: 150.0,
                     ),
                   ),
                   Container(
