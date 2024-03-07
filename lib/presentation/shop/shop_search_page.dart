@@ -11,6 +11,12 @@ class _ShopSearchPageState extends State<ShopSearchPage> {
   final TextEditingController searchController = TextEditingController();
 
   @override
+  void initState() {
+    Shop.fromJson(shops_json);
+    super.initState();
+  }
+
+  @override
   void dispose() {
     searchController.dispose();
     super.dispose();
