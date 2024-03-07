@@ -13,6 +13,7 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
   List<ProductElement> productsList = [];
   List<bool> isActiveList = [];
   int indexActive = 0;
+  bool isAtiveRadar = false;
 
   List<List<double>> coord = [
     [145.0, 73, 0],
@@ -47,17 +48,16 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
               "assets/maps_images/map.png",
               height: 395,
             ),
-            Positioned(
-              bottom: coord[indexActive][0],
-              right: coord[indexActive][1],
-              child: Icon(
-                Icons.location_pin,
-                color: context.watch<BeaconsCubit>().state is BeaconsLoaded
-                    ? Colors.black
-                    : Colors.transparent,
-                size: 48,
-              ),
-            ),
+            isAtiveRadar
+                ? Positioned(
+                    bottom: coord[indexActive][0],
+                    right: coord[indexActive][1],
+                    child: Image.asset(
+                      "assets/images/radar.gif",
+                      height: 30,
+                    ),
+                  )
+                : const SizedBox(),
           ],
         ),
         Expanded(
@@ -81,6 +81,7 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
                     return ListTile(
                       contentPadding: EdgeInsets.zero,
                       onTap: () {
+                        isAtiveRadar = false;
                         if (index != indexActive) {
                           if (isActiveList[indexActive]) {
                             isActiveList[indexActive] = false;
@@ -91,6 +92,7 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
                           isActiveList[index] = false;
                           // context.read<BeaconsCubit>().beaconsClose();
                         } else {
+                          isAtiveRadar = true;
                           isActiveList[index] = true;
                           if (context.read<BeaconsCubit>().state
                               is BeaconsActive) {
