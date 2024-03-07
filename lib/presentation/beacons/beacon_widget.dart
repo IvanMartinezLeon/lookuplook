@@ -14,6 +14,7 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
   List<bool> isActiveList = [];
   int indexActive = 0;
   bool isAtiveRadar = false;
+  Color isColor = Colors.black;
 
   List<List<double>> coord = [
     [145.0, 73, 0],
@@ -55,6 +56,7 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
                     child: Image.asset(
                       "assets/images/radar.gif",
                       height: 30,
+                      color: isColor.withOpacity(0.3),
                     ),
                   )
                 : const SizedBox(),
@@ -66,7 +68,23 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
               vertical: 8.0,
               horizontal: 16.0,
             ),
-            child: BlocBuilder<BeaconsCubit, BeaconsState>(
+            child: BlocConsumer<BeaconsCubit, BeaconsState>(
+              listener: (context, state) {
+                if (state is BeaconsLoaded) {
+                  if (state.rangingList!.accuracy > 0 &&
+                      state.rangingList!.accuracy < 1) {
+                    isColor = Colors.green;
+                  }
+                  if (state.rangingList!.accuracy > 1 &&
+                      state.rangingList!.accuracy < 2) {
+                    isColor = Colors.blue;
+                  }
+                  if (state.rangingList!.accuracy > 2) {
+                    isColor = Colors.black;
+                  }
+                  setState(() {});
+                }
+              },
               builder: (context, state) {
                 if (state is BeaconsError) {
                   return Center(
