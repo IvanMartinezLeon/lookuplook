@@ -94,7 +94,6 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
                           isActiveList[index] = true;
                           if (context.read<BeaconsCubit>().state
                               is BeaconsActive) {
-                            print('activo');
                             context
                                 .read<BeaconsCubit>()
                                 .beaconsRanging(productsList[index].uuid);
