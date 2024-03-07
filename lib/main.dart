@@ -1,6 +1,6 @@
 import 'presentation/presentation.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
