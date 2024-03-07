@@ -25,16 +25,14 @@ class BeaconsCubit extends Cubit<BeaconsState> {
               identifier: '50765CB7-D9EA-4E21-99A4-FA879613A492',
             )
           ],
-          const [],
-          const [],
+          null,
         ),
       );
     } catch (e) {
       emit(
         BeaconsError(
           state.beaconsList,
-          const [],
-          const [],
+          null,
           message: e.toString(),
         ),
       );
@@ -51,8 +49,7 @@ class BeaconsCubit extends Cubit<BeaconsState> {
         emit(
           BeaconsLoading(
             state.beaconsList,
-            [],
-            state.monitoringList,
+            null,
           ),
         );
 
@@ -61,8 +58,7 @@ class BeaconsCubit extends Cubit<BeaconsState> {
             emit(
               BeaconsLoaded(
                 state.beaconsList,
-                [element],
-                state.monitoringList,
+                null,
               ),
             );
           }
@@ -75,35 +71,6 @@ class BeaconsCubit extends Cubit<BeaconsState> {
         BeaconsError(
           state.beaconsList,
           state.rangingList,
-          state.monitoringList,
-          message: e.toString(),
-        ),
-      );
-    }
-  }
-
-  void beaconsMonitoring() async {
-    try {
-      List<MonitoringResult> resultMonitoringList = [];
-      flutterBeacon
-          .monitoring(state.beaconsList)
-          .listen((MonitoringResult result) {
-        resultMonitoringList.add(result);
-
-        emit(
-          BeaconsLoaded(
-            state.beaconsList,
-            state.rangingList,
-            resultMonitoringList.toSet().toList(),
-          ),
-        );
-      });
-    } catch (e) {
-      emit(
-        BeaconsError(
-          state.beaconsList,
-          state.rangingList,
-          state.monitoringList,
           message: e.toString(),
         ),
       );
