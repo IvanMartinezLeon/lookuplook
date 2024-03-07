@@ -49,9 +49,13 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'lookuplook',
       theme: ThemeData(
+        useMaterial3: true,
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          surfaceTintColor: Colors.transparent,
+          backgroundColor: Colors.white,
+        ),
       ),
       home: const LoginPage(),
     );

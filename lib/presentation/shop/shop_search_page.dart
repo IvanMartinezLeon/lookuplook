@@ -28,7 +28,7 @@ class _ShopSearchPageState extends State<ShopSearchPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: const Text("search-shops"),
+        title: const Text("Selección tienda"),
       ),
       body: SafeArea(
         child: Padding(
@@ -64,6 +64,7 @@ class _ShopSearchPageState extends State<ShopSearchPage> {
                   itemCount: shopList.length,
                   itemBuilder: (context, index) {
                     return ListTile(
+                      contentPadding: EdgeInsets.zero,
                       onTap: () {
                         Navigator.push(
                           context,
