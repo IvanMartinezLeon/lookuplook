@@ -26,7 +26,7 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
 
   @override
   void initState() {
-    productsList = Product.fromJson(product_json).products;
+    productsList = Product.fromJson(productJSON).products;
     isActiveList = List.filled(productsList.length, false);
     super.initState();
   }
@@ -92,9 +92,13 @@ class _BeaconsWidgetState extends State<BeaconsWidget> {
                           // context.read<BeaconsCubit>().beaconsClose();
                         } else {
                           isActiveList[index] = true;
-                          context
-                              .read<BeaconsCubit>()
-                              .beaconsRanging(productsList[index].uuid);
+                          if (context.read<BeaconsCubit>().state
+                              is BeaconsActive) {
+                            print('activo');
+                            context
+                                .read<BeaconsCubit>()
+                                .beaconsRanging(productsList[index].uuid);
+                          }
                         }
                         indexActive = index;
 

@@ -1,4 +1,4 @@
-var product_json = {
+var productJSON = {
   "Products": [
     {
       "Uuid": "2f234454-cf6d-4a0f-adf2-f4911ba9ffa7",

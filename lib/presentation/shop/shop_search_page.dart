@@ -13,7 +13,7 @@ class _ShopSearchPageState extends State<ShopSearchPage> {
 
   @override
   void initState() {
-    shopList = Shop.fromJson(shops_json).results;
+    shopList = Shop.fromJson(shopsJOSN).results;
     super.initState();
   }
 

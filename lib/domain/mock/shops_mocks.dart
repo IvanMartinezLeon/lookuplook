@@ -1,4 +1,4 @@
-var shops_json = {
+var shopsJOSN = {
   "results": [
     {
       "Store": "1760",

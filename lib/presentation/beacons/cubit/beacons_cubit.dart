@@ -9,10 +9,10 @@ class BeaconsCubit extends Cubit<BeaconsState> {
   BeaconsCubit() : super(const BeaconsInitial());
   void beaconsInit() async {
     try {
-      PermissionStatus locationPermission = await Permission.location.request();
-      PermissionStatus blePermission = await Permission.bluetooth.request();
-      PermissionStatus bleScan = await Permission.bluetoothScan.request();
-      PermissionStatus bleConnect = await Permission.bluetoothConnect.request();
+      await Permission.location.request();
+      await Permission.bluetooth.request();
+      await Permission.bluetoothScan.request();
+      await Permission.bluetoothConnect.request();
       await flutterBeacon.initializeScanning;
       await flutterBeacon.initializeAndCheckScanning;
       emit(
@@ -66,7 +66,6 @@ class BeaconsCubit extends Cubit<BeaconsState> {
 
         for (Beacon element in result.beacons) {
           if (beaconUID.toUpperCase() == element.proximityUUID.toUpperCase()) {
-            print('encontradooooo');
             emit(
               BeaconsLoaded(
                 state.beaconsList,
@@ -75,8 +74,6 @@ class BeaconsCubit extends Cubit<BeaconsState> {
             );
           }
         }
-        print(result.region.toString());
-        print(result.beacons.toString());
       });
     } catch (e) {
       emit(
