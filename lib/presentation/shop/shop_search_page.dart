@@ -9,10 +9,11 @@ class ShopSearchPage extends StatefulWidget {
 
 class _ShopSearchPageState extends State<ShopSearchPage> {
   final TextEditingController searchController = TextEditingController();
+  List<Result> shopList = [];
 
   @override
   void initState() {
-    Shop.fromJson(shops_json);
+    shopList = Shop.fromJson(shops_json).results;
     super.initState();
   }
 
@@ -60,7 +61,7 @@ class _ShopSearchPageState extends State<ShopSearchPage> {
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   padding: EdgeInsets.zero,
-                  itemCount: 100,
+                  itemCount: shopList.length,
                   itemBuilder: (context, index) {
                     return ListTile(
                       onTap: () {
@@ -68,13 +69,17 @@ class _ShopSearchPageState extends State<ShopSearchPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ShopPage(
-                              shopUID: 'Shop $index',
+                              shopUID: shopList[index],
                             ),
                           ),
                         );
                       },
-                      title: Text("Shop $index"),
-                      subtitle: const Text('address'),
+                      title: Text(shopList[index]
+                          .storeName
+                          .split("STMANGO")[0]
+                          .trimLeft()),
+                      subtitle: Text(
+                          '${shopList[index].streetName}, ${shopList[index].postalCode} ${shopList[index].cityName}'),
                       trailing: const Icon(Icons.arrow_forward_ios),
                     );
                   },

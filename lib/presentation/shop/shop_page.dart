@@ -1,7 +1,7 @@
 import '../presentation.dart';
 
 class ShopPage extends StatefulWidget {
-  final String shopUID;
+  final Result shopUID;
   const ShopPage({super.key, required this.shopUID});
 
   @override
@@ -18,9 +18,11 @@ class _ShopPageState extends State<ShopPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(widget.shopUID, style: Theme.of(context).textTheme.titleLarge),
+            Text(widget.shopUID.storeName.split("STMANGO")[0].trimLeft(),
+                style: Theme.of(context).textTheme.titleMedium),
             Text(
-              widget.shopUID,
+              '${widget.shopUID.streetName}, ${widget.shopUID.postalCode} ${widget.shopUID.cityName}'
+                  .trimLeft(),
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
