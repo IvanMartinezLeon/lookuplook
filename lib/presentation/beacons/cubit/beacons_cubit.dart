@@ -41,31 +41,34 @@ class BeaconsCubit extends Cubit<BeaconsState> {
     }
   }
 
-  void beaconsRanging() async {
+  void beaconsRanging(String beaconUID) async {
     try {
-      List<Beacon> resultRangeList = [];
-
-      flutterBeacon.ranging(state.beaconsList).listen((RangingResult result) {
-        for (Beacon element in result.beacons) {
-          Iterable<Region> isFind = state.beaconsList.where(
-            (e) => e.identifier == element.proximityUUID,
-          );
-
-          if (isFind.isNotEmpty) {
-            resultRangeList.add(element);
-          }
-        }
-
-        print(result.region.toString());
-        print(result.beacons.toString());
-
+      flutterBeacon.ranging([
+        Region(
+          identifier: '50765CB7-D9EA-4E21-99A4-FA879613A492',
+        ),
+      ]).listen((RangingResult result) {
         emit(
-          BeaconsLoaded(
+          BeaconsLoading(
             state.beaconsList,
-            resultRangeList.toSet().toList(),
+            [],
             state.monitoringList,
           ),
         );
+
+        for (Beacon element in result.beacons) {
+          if (beaconUID == element.proximityUUID) {
+            emit(
+              BeaconsLoaded(
+                state.beaconsList,
+                [element],
+                state.monitoringList,
+              ),
+            );
+          }
+        }
+        print(result.region.toString());
+        print(result.beacons.toString());
       });
     } catch (e) {
       emit(
